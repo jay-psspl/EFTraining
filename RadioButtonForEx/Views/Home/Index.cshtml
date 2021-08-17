@@ -1,0 +1,16 @@
+﻿@model RadioButtonForEx.Models.RadioButtonListClass
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm())
+{
+    for (int i = 0; i < Model.radiobuttionlist.Count(); i++)
+    {
+        @Html.RadioButtonFor(m=>Model.selectedradio,Model.radiobuttionlist[i].CatId)
+        @Html.Label(Model.radiobuttionlist[i].CategoryName)
+    }
+    <input type="submit" name="name" value="Get Value" />
+}
+

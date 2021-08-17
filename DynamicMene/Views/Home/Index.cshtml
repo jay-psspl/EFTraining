@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+
+@*<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />*@
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+@*<script src="~/Scripts/jquery-ui-1.12.1.js"></script>*@
+<h2>Index</h2>
+<script>
+    $(document).ready(function(){
+    $('.nav li  > .sub-menu').parent().hover(function () {
+        var submenu = $(this).children('.sub-menu');
+        if ($(submenu).is(':hidden')) {
+            $(submenu).slideDown(200);
+        } else {
+            $(submenu).slideUp(200);
+        }
+    });
+    })
+
+</script>
+<style>
+    .nav li {
+        list-style: none;
+        padding: 5px 10px;
+        width: 300px;
+    }
+
+    .nav > li {
+        float: left;
+    }
+
+    .nav .sub-menu {
+        display: none;
+    }
+</style>
+
+<nav>
+    <ul class="nav">
+        @{
+            foreach (var item in Model)
+            {
+                <li>
+                    <a href="/Page/@item.menuurl">@item.menuname</a>
+                    @if (item.SubMenus.Count > 0)
+                    {
+                        <ul class="sub-menu">
+                            @foreach (var item2 in item.SubMenus)
+                            {
+                                <li><a href="/Category/@item2.submenuurl/@item2.id">@item2.submenuname</a></li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+        }
+    </ul>
+
+</nav>
